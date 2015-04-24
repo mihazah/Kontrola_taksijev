@@ -1,0 +1,17 @@
+#centriranaForma{
+	margin-right: auto;
+	margin-left: auto;
+	width: 350px;
+	background-color: #DDD;
+}
+#napaka{
+	color: red;
+	font-weight: bold;
+}
+#uspesno{
+	color: green;
+	font-weight: bold;
+}
+h1{
+	text-align: center;
+}

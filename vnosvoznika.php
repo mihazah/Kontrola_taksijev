@@ -36,7 +36,24 @@
 				<td>Tel.st:</td><td><input type="text" name="Tel"></td>
 			</tr> 
 			<tr>
-				<td>Ime drustva:</td><td><input type="text" name="Drustvo"></td>
+				<td>Ime drustva:</td>
+				<td>
+					<select name="ID_Drustvo">
+						<?php  
+							$povezava = new mysqli("localhost", "root", "", "taksi_sluzba");//link na bazo
+							if ($povezava->connect_errno) {
+					    		echo "Napaka: " . $mysqli->connect_error; // napise do kaksne napake je prislo
+							}
+
+							$poizvedba="SELECT ID_taksi_drustva, Ime_drustva from taksi_drustvo";
+							$rezultat=$povezava->query($poizvedba); // izvede sql kodo (poizvedbe)
+							while($vrstica = $rezultat->fetch_assoc()){
+								echo '<option value="'.$vrstica['ID_taksi_drustva'].'">'.$vrstica['Ime_drustva'].'</option>';		
+							}
+							
+						?>
+					</select> 
+				</td>
 			</tr> 
 		</table>
 		<input type="submit" value="Dodaj drustvo">

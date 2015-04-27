@@ -42,7 +42,25 @@
 				<td>Konstanta vozila:</td><td><input type="text" name="Konstanta_vozila"></td>
 			</tr>
 			<tr>
-				<td>Serijska st. taksimetra:</td><td><input type="text" name="Serijska_st"></td>
+				<td>Serijska st. taksimetra:</td>
+				<td>
+					<select name="ID_taksimeter">
+						<?php  
+							$povezava = new mysqli("localhost", "root", "", "taksi_sluzba");//link na bazo
+							if ($povezava->connect_errno) {
+					    		echo "Napaka: " . $mysqli->connect_error; // napise do kaksne napake je prislo
+							}
+
+							$poizvedba="SELECT ID_taksimeter, Serijska_st from taksimeter";
+							$rezultat=$povezava->query($poizvedba); // izvede sql kodo (poizvedbe)
+							while($vrstica = $rezultat->fetch_assoc()){
+								echo '<option value="'.$vrstica['ID_taksimeter'].'">'.$vrstica['Serijska_st'].'</option>';		
+							}
+							
+						?>
+					</select> 
+				</td>
+
 			</tr>
 		</table>
 		<input type="submit" value="Dodaj vozilo">

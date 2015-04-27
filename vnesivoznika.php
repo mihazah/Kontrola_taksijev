@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if($_POST['Ime']==""||$_POST['Priimek']==""||$_POST['Tel']==""||$_POST['Davcna']==""||$_POST['Drustvo']==""){
+if($_POST['Ime']==""||$_POST['Priimek']==""||$_POST['Tel']==""||$_POST['Davcna']==""||$_POST['ID_Drustvo']==""){
 	$_SESSION['napaka']="VNOS NI BIL USPESEN: Neko polje je prazno.";
 }
 else{
@@ -11,6 +11,19 @@ else{
     		echo "Napaka: " . $mysqli->connect_error; // napise do kaksne napake je prislo
 		}
 
+		$poizvedba="SELECT * from voznik where Davcna_st='".$_POST['Davcna']."'";
+		$rezultat=$povezava->query($poizvedba); // izvede sql kodo (poizvedbe)
+		$vrstica = $rezultat->fetch_assoc(); 
+		if($rezultat->num_rows!=0){ // drustvo se ne obstaja
+			$_SESSION['napaka']="VNOS NI BIL USPESEN: Voznik s tako davČno ze obstaja.";
+		}
+		else{
+				$poizvedba="INSERT INTO voznik (Ime, Priimek, Davcna_st, Telefon, ID_taksi_drustva) values ('".$_POST['Ime']."','".$_POST['Priimek']."','".$_POST['Davcna']."','".$_POST['Tel']."',".$_POST['ID_Drustvo'].")"; //$drustvo je id drustva
+				$povezava->query($poizvedba); // izvede sql kodo (poizvedbe)
+				$_SESSION['uspesno']="Vnos je bil uspesen.";
+			}
+
+		/*
 		$poizvedba="SELECT * from taksi_drustvo where Ime_drustva='".$_POST['Drustvo']."'";
 		$rezultat=$povezava->query($poizvedba); // izvede sql kodo (poizvedbe)
 		
@@ -31,6 +44,7 @@ else{
 				$_SESSION['uspesno']="Vnos je bil uspesen.";
 			}
 		}
+		*/
 	}
 
 header("location: vnosvoznika.php");

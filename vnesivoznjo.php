@@ -1,8 +1,9 @@
 <?php
 session_start();
 
-if($_POST['Ime']==""||$_POST['Priimek']==""||$_POST['Registrska']==""||$_POST['Tarifa']==""||$_POST['Datum_dvig']==""||$_POST['Datum_dostave']==""){
+if($_POST['Id_Voznika']==""||$_POST['ID_vozila']==""||$_POST['Id_Tarife']==""||$_POST['Datum_dvig']==""||$_POST['Datum_dostave']==""){
 	$_SESSION['napaka']="VNOS NI BIL USPESEN: Neko polje je prazno.";
+	//posiljam cez id-je, zaradi lazjega dostopa do drugih tabel
 }
 else{
 		//vstavi v bazo
@@ -11,6 +12,11 @@ else{
     		echo "Napaka: " . $mysqli->connect_error; // napise do kaksne napake je prislo
 		}
 
+		$poizvedba="INSERT INTO Voznja (Datum_dviga, Datum_dostave, ID_vozila, ID_voznika, Id_tarife) values ('".$_POST['Datum_dvig']."','".$_POST['Datum_dostave']."',".$_POST['ID_vozila'].",".$_POST['Id_Voznika'].",".$_POST['Id_Tarife'].")"; 
+		$povezava->query($poizvedba); // izvede sql kodo (poizvedbe)
+		$_SESSION['uspesno']="Vnos je bil uspesen.";
+
+		/*
 		$poizvedba="SELECT * from vozilo where Registrska_stevilka='".$_POST['Registrska']."'";
 		$rezultat=$povezava->query($poizvedba); // izvede sql kodo (poizvedbe)
 		
@@ -46,6 +52,7 @@ else{
 				}
 			}
 		}
+		*/
 	}
 
 header("location: vnosvoznja.php");

@@ -38,6 +38,9 @@
 			<tr>
 				<td>Programska verzija:</td><td><input type="text" name="Prog_verzija"></td>
 			</tr> 
+			<tr>
+				<td>Preskok:</td><td><input type="text" name="Preskok"></td>
+			</tr> 
 		</table>
 		<input type="submit" value="Dodaj taximeter">
 

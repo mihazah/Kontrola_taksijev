@@ -22,17 +22,17 @@
 			<tr>
 				<td>Registrska stevilka vozila:</td>
 				<td>
-					<select name="ID_vozila">
+					<select name="ID_taksimetra">
 						<?php  
 							$povezava = new mysqli("localhost", "root", "", "taksi_sluzba");//link na bazo
 							if ($povezava->connect_errno) {
 					    		echo "Napaka: " . $mysqli->connect_error; // napise do kaksne napake je prislo
 							}
 
-							$poizvedba="SELECT ID_vozila, Registrska_stevilka from vozilo";
+							$poizvedba="SELECT ID_taksimeter, Serijska_st from taksimeter";
 							$rezultat=$povezava->query($poizvedba); // izvede sql kodo (poizvedbe)
 							while($vrstica = $rezultat->fetch_assoc()){
-								echo '<option value="'.$vrstica['ID_vozila'].'">'.$vrstica['Registrska_stevilka'].'</option>';
+								echo '<option value="'.$vrstica['ID_taksimeter'].'">'.$vrstica['Serijska_st'].'</option>';
 
 							}
 						?>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if($_POST['Proizvajalec']==""||$_POST['Tip']==""||$_POST['Oznaka']==""||$_POST['Serijska']==""||$_POST['Prog_verzija']==""){
+if($_POST['Proizvajalec']==""||$_POST['Tip']==""||$_POST['Oznaka']==""||$_POST['Serijska']==""||$_POST['Prog_verzija']==""||$_POST['Preskok']==""){
 	$_SESSION['napaka']="VNOS NI BIL USPESEN: Neko polje je prazno.";
 }
 else{
@@ -18,7 +18,7 @@ else{
 			$_SESSION['napaka']="VNOS NI BIL USPESEN: Taksimeter ze obstaja.";
 		}
 		else{
-			$poizvedba="INSERT INTO taksimeter (Proizvajalec, Tip_taksimetra, Uradna_oznaka, Serijska_st, Programska_verzija) values ('".$_POST['Proizvajalec']."','".$_POST['Tip']."','".$_POST['Oznaka']."','".$_POST['Serijska']."','".$_POST['Prog_verzija']."')"; 
+			$poizvedba="INSERT INTO taksimeter (Proizvajalec, Tip_taksimetra, Uradna_oznaka, Serijska_st, Programska_verzija, Preskok) values ('".$_POST['Proizvajalec']."','".$_POST['Tip']."','".$_POST['Oznaka']."','".$_POST['Serijska']."','".$_POST['Prog_verzija']."', ".$_POST['Preskok'].")"; 
 			$povezava->query($poizvedba); // izvede sql kodo (poizvedbe)
 			$_SESSION['uspesno']="Vnos je bil uspesen.";
 		}

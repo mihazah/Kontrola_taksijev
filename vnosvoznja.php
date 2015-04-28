@@ -84,6 +84,10 @@
 				</td>
 			</tr> 
 			<tr>
+				<td>Kilometri:</td><td><input type="text" name="Kilometri"></td>
+			</tr>
+
+			<tr>
 				<td>Datum in cas dviga:</td><td><input type="text" name="Datum_dvig"></td>
 			</tr> 
 			<tr>

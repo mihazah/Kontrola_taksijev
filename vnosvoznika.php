@@ -56,7 +56,7 @@
 				</td>
 			</tr> 
 		</table>
-		<input type="submit" value="Dodaj drustvo">
+		<input type="submit" value="Dodaj voznika">
 
 	</form>
 </div>
